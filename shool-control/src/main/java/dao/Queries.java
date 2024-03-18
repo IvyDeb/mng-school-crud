@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Properties;
+import java.util.ArrayList;
+import javabeans.Carrera;
 // import javax.swing.JOptionPane;
 
 public final class Queries {  
@@ -54,7 +56,8 @@ private static Properties getProperties(){
         }
 
     }
-    public static void getCarreras(Connection conexion, String table_name){
+    public static ArrayList<Carrera> getCarrera(Connection conexion, String table_name){
+        ArrayList<Carrera> carreras = new ArrayList<Carrera>();
         try {
             String Query = "SELECT * FROM " + table_name;
             Statement st = conexion.createStatement();
@@ -63,13 +66,16 @@ private static Properties getProperties(){
 
             while(resultSet.next()){
                 System.out.println(resultSet.getInt("id") + "-" + resultSet.getString("nombre"));
+                carreras.add(new Carrera(resultSet.getInt("id"), resultSet.getString("nombre")));
             }
         } catch (SQLException ex) {
             // JOptionPane.showMessageDialog(null, "Error en la adquisición de datos");
             System.out.println("Error retrieving the data");
         }
+        return carreras;
     }
-    public static void getCarrera(Connection conexion, String table_name, String carrera){
+    public static Carrera getCarrera(Connection conexion, String table_name, String carrera){
+        Carrera myCarrera = new Carrera();
         try {
             String Query = "SELECT * FROM " + table_name + " WHERE nombre LIKE " + "'" + carrera + "'";
             Statement st = conexion.createStatement();
@@ -78,13 +84,17 @@ private static Properties getProperties(){
             if(!resultSet.next()){
                 System.out.println("The career introduced doesn't exists");
             }else{
-                System.out.println("The career introdced exists");
+                System.out.println("The career introduced exists");
                 System.out.println(resultSet.getInt("id") + "-" + resultSet.getString("nombre"));
+                myCarrera.setId(resultSet.getInt("id"));
+                myCarrera.setNombre("nombre");
             }
         } catch (SQLException ex) {
             // JOptionPane.showMessageDialog(null, "Error en la adquisición de datos");
             System.out.println("Error retrieving the data");
         }
+
+        return myCarrera;
     }
     public static void insertData(Connection conexion, String table_name, String name){
         try {
