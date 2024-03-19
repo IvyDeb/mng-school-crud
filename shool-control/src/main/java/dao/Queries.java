@@ -28,7 +28,7 @@ public final class Queries {
 private static Properties getProperties(){
     Properties properties = new Properties();
     try {
-        properties.load(new FileInputStream("config\\db.properties"));
+        properties.load(new FileInputStream("shool-control\\config\\db.properties"));
     } catch (IOException e) {
         System.err.printf("Error load 'db.properties' %s \n", e.getMessage());
         return null;
@@ -56,7 +56,7 @@ private static Properties getProperties(){
         }
 
     }
-    public static ArrayList<Carrera> getCarrera(Connection conexion, String table_name){
+    public static ArrayList<Carrera> getCarreras(Connection conexion, String table_name){
         ArrayList<Carrera> carreras = new ArrayList<Carrera>();
         try {
             String Query = "SELECT * FROM " + table_name;
