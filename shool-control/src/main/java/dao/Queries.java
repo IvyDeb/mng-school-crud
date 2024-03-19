@@ -15,30 +15,36 @@ import javabeans.Carrera;
 
 public final class Queries {  
 
-    final public static String db = getProperties().getProperty("db");
-    final public static String clientTable = getProperties().getProperty("clientTable");
-    final static String user = getProperties().getProperty("user");
-    final static String password = getProperties().getProperty("password");
+    // final public static String db = getProperties().getProperty("db");
+    // final public static String clientTable = getProperties().getProperty("clientTable");
+    // final static String user = getProperties().getProperty("user");
+    // final static String password = getProperties().getProperty("password");
+    final public static String db = "universidadtpfs";
+    final public static String clientTable = "carreras";
+    final static String user = "root";
+    final static String password = "202518";
 
     public Queries(){
         // Properties properties = new Properties();
         // Singleton
     }
 
-private static Properties getProperties(){
-    Properties properties = new Properties();
-    try {
-        properties.load(new FileInputStream("shool-control\\config\\db.properties"));
-    } catch (IOException e) {
-        System.err.printf("Error load 'db.properties' %s \n", e.getMessage());
-        return null;
-    }
-    return properties;
-}
+// private static Properties getProperties(){
+//     Properties properties = new Properties();
+//     try {
+//         properties.load(new FileInputStream("../../config/db.properties"));
+//     } catch (IOException e) {
+//         System.err.printf("Error load 'db.properties' %s \n", e.getMessage());
+//         return null;
+//     }
+//     return properties;
+// }
     public static Connection createConnection(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/" + db, user, password);
+            // Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/feedback?user=root&password=202518");
+
             System.out.println("Connection established");
             return conexion;
         }catch (SQLException | ClassNotFoundException ex) {
