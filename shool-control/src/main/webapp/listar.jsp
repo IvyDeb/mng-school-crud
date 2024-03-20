@@ -10,12 +10,19 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <title>Document</title>
   </head>
   <body>
-    <h1>Sos un crack</h1>
+    <h1>Lista de carreras</h1>
     <form action="home" method="post">
       <input type="submit" name="opcion" value="Carrera" />
       <input type="submit" name="opcion" value="Crear" />
       <input type="submit" name="opcion" value="Listar" />
       <input type="submit" name="opcion" value="Modificar" />
     </form>
+    <ul>
+      <c:forEach var="carrera" items="${requestScope.misCarreras}">
+        <li>
+          ${carrera.getNombre()} <span><a href="">Borrar</a></span>
+        </li>
+      </c:forEach>
+    </ul>
   </body>
 </html>

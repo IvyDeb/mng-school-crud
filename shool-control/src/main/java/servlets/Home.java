@@ -23,18 +23,38 @@ public class Home extends HttpServlet {
         request.setAttribute("misCarreras", misCarreras);
         RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
         dispatcher.forward(request, response);
+        Queries.closeConnection(conexion);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String rpt = request.getParameter("opcion");
-        if(rpt == "1"){
-            RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
-            dispatcher.forward(request, response);
-    
-            // for (Carrera carrera : miCarreras) {
-            //     System.out.println();
-            // }
+        RequestDispatcher dispatcher;
+        Connection conexion = Queries.createConnection();
+        switch (rpt) {
+            case "Carrera":
+                dispatcher = request.getRequestDispatcher("carrera.jsp");
+                dispatcher.forward(request, response);
+            break;
+            
+            case "Crear":
+                dispatcher = request.getRequestDispatcher("crear.jsp");
+                dispatcher.forward(request, response);
+            break;
+            
+            case "Listar":
+                ArrayList<Carrera> misCarreras = Queries.getCarreras(conexion, Queries.clientTable);
+                request.setAttribute("misCarreras", misCarreras);
+                dispatcher = request.getRequestDispatcher("listar.jsp");
+                dispatcher.forward(request, response);
+                break;
+            case "Modificar":
+                dispatcher = request.getRequestDispatcher("modificar.jsp");
+                dispatcher.forward(request, response);
+                break;
+            default:
+                    
+                break;
         }
-
+        Queries.closeConnection(conexion);
     }
 }

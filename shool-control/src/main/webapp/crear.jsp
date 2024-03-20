@@ -10,12 +10,11 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <title>Document</title>
   </head>
   <body>
-    <h1>Sos un crack</h1>
-    <form action="home" method="post">
-      <input type="submit" name="opcion" value="Carrera" />
-      <input type="submit" name="opcion" value="Crear" />
-      <input type="submit" name="opcion" value="Listar" />
-      <input type="submit" name="opcion" value="Modificar" />
+    <h1>Crear carrera</h1>
+    <form method="post">
+      <label for="nuevaCarrera">Nueva carrera</label>
+      <input type="text" name="nuevaCarrera" />
+      <input type="submit" value="Crear" />
     </form>
   </body>
 </html>
