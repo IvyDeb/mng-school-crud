@@ -11,24 +11,12 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
   </head>
   <body>
     <h1>Carrera</h1>
+    <jsp:include page="navbar.jsp" flush="true"></jsp:include>
     <form method="post">
-      <label for="opcion">Opcion</label>
-      <input type="text" name="opcion" />
-      <input type="submit" value="submit" />
+      <label for="consultarCarrera">Ingrese carrera</label>
+      <input type="text" name="consultaCarrera" />
+      <input type="submit" value="Consultar" />
     </form>
     <ul>
-      <ul>
-        <c:forEach var="carrera" items="${requestScope.misCarreras}">
-          <li>${carrera.getNombre()}</li>
-        </c:forEach>
-      </ul>
-    
-    <ul>
-      <li><a href="carrera">Carrera</a></li>
-      <li><a href="crear">Crear</a></li>
-      <li><a href="listar">Listar</a></li>
-      <li><a href="modificar">Modificar</a></li>
-    </ul>
-    ${requestScope.misCarreras[0].getNombre()}
   </body>
 </html>

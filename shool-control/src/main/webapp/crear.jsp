@@ -11,8 +11,9 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
   </head>
   <body>
     <h1>Crear carrera</h1>
+    <jsp:include page="navbar.jsp" flush="true"></jsp:include>
     <form method="post">
-      <label for="nuevaCarrera">Nueva carrera</label>
+      <label for="nuevaCarrera">Ingrese nueva carrera</label>
       <input type="text" name="nuevaCarrera" />
       <input type="submit" value="Crear" />
     </form>

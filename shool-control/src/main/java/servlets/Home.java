@@ -52,7 +52,16 @@ public class Home extends HttpServlet {
                 dispatcher.forward(request, response);
                 break;
             default:
+                //Se fija uno a uno el que llega a tener un valor para hacer la consulta determiknada
+                if(request.getParameter("consultaCarrera") == null){
+                    if(request.getParameter("nuevaCarrera") == null){
+                        if(request.getParameter("carreraModificar") == null){
+                            System.err.println("Error");
+                        }
+                    }
+                }else {
                     
+                }
                 break;
         }
         Queries.closeConnection(conexion);

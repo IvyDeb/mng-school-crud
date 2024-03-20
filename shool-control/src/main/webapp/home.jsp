@@ -10,12 +10,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <title>Document</title>
   </head>
   <body>
-    <h1>Sos un crack</h1>
-    <form action="home" method="post">
-      <input type="submit" name="opcion" value="Carrera" />
-      <input type="submit" name="opcion" value="Crear" />
-      <input type="submit" name="opcion" value="Listar" />
-      <input type="submit" name="opcion" value="Modificar" />
-    </form>
+    <h1>Web App Institucional</h1>
+    <jsp:include page="navbar.jsp" flush="true"></jsp:include>
   </body>
 </html>

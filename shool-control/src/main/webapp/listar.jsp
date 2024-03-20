@@ -11,12 +11,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
   </head>
   <body>
     <h1>Lista de carreras</h1>
-    <form action="home" method="post">
-      <input type="submit" name="opcion" value="Carrera" />
-      <input type="submit" name="opcion" value="Crear" />
-      <input type="submit" name="opcion" value="Listar" />
-      <input type="submit" name="opcion" value="Modificar" />
-    </form>
+    <jsp:include page="navbar.jsp" flush="true"></jsp:include>
     <ul>
       <c:forEach var="carrera" items="${requestScope.misCarreras}">
         <li>
