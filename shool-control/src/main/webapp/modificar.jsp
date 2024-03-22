@@ -13,8 +13,8 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <h1>Modificar</h1>
     <jsp:include page="navbar.jsp" flush="true"></jsp:include>
     <form method="post">
-      <label for="carreraModificar">Carrera a modificar</label>
-      <input type="text" name="carreraModificar" />
+      <label for="modificarCarrera">Carrera a modificar</label>
+      <input type="text" name="modificarCarrera" />
       <input type="submit" value="submit" />
     </form>
   </body>

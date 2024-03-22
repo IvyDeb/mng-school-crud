@@ -57,17 +57,36 @@ public class Home extends HttpServlet {
 
             default:
                 //Se fija uno a uno el que llega a tener un valor para hacer la consulta determiknada
-                String carrera = request.getParameter("consultaCarrera");
-                if((carrera) == null){
-                    if(request.getParameter("nuevaCarrera") == null){
-                        if(request.getParameter("carreraModificar") == null){
+                String consultaCarrera = request.getParameter("consultaCarrera");
+                String crearCarrera = request.getParameter("nuevaCarrera");
+                String modificarCarrera = request.getParameter("modificarCarrera");
+                String rpt;
+                if((consultaCarrera) == null){
+                    if(crearCarrera == null){
+                        if(modificarCarrera == null){
                             System.err.println("Error");
                             dispatcher = request.getRequestDispatcher("index.jsp");
                             dispatcher.forward(request, response);            
                         }
+                    } else {
+                        try {
+                            if(crearCarrera == ""){
+                                throw new Exception();
+                            }
+                            Queries.insertData(conexion, Queries.clientTable, crearCarrera);
+                            rpt = "Carrera creada correctamente";
+                            request.setAttribute("carrera", rpt);
+
+                        } catch (Exception e) {
+                            rpt = "Error, ingrese un valor valido";
+                            request.setAttribute("carrera", rpt);
+                            System.out.println("Error, ingrese un valor valido");
+                        } finally {
+                            dispatcher = request.getRequestDispatcher("crear.jsp");
+                            dispatcher.forward(request, response);            
+                        }
                     }
                 }else {
-                    String rpt;
                     try {
                         Carrera carreraConsulta = Queries.getCarrera(conexion, Queries.clientTable, request.getParameter("consultaCarrera"));
                         if(carreraConsulta.getNombre() == null){
@@ -75,7 +94,7 @@ public class Home extends HttpServlet {
                         }
                         request.setAttribute("carrera", carreraConsulta.getNombre());
                     } catch (Exception e) {
-                        rpt = "No se encuentra disponible " + carrera + " como carrera en nuestra universidad";
+                        rpt = "No se encuentra disponible " + consultaCarrera + " como carrera en nuestra universidad";
                         System.out.println("Error Error");
                         request.setAttribute("carrera", rpt);
                     } finally {
