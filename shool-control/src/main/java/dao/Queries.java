@@ -93,7 +93,7 @@ public final class Queries {
                 System.out.println("The career introduced exists");
                 System.out.println(resultSet.getInt("id") + "-" + resultSet.getString("nombre"));
                 myCarrera.setId(resultSet.getInt("id"));
-                myCarrera.setNombre("nombre");
+                myCarrera.setNombre(resultSet.getString("nombre"));
             }
         } catch (SQLException ex) {
             // JOptionPane.showMessageDialog(null, "Error en la adquisición de datos");

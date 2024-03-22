@@ -12,11 +12,17 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
   <body>
     <h1>Consulta carrera</h1>
     <jsp:include page="navbar.jsp" flush="true"></jsp:include>
-    <form method="post">
-      <label for="consultarCarrera">Ingrese carrera a consultar</label>
-      <input type="text" name="consultaCarrera" />
-      <input type="submit" value="Consultar" />
-    </form>
-    <ul>
+    <c:choose>
+      <c:when test="${empty carrera}">
+        <form method="post">
+          <label for="consultarCarrera">Ingrese carrera a consultar</label>
+          <input type="text" name="consultaCarrera" />
+          <input type="submit" value="Consultar" />
+        </form>
+      </c:when>
+      <c:otherwise>
+        <p>${carrera}</p>
+      </c:otherwise>
+    </c:choose>
   </body>
 </html>

@@ -28,6 +28,9 @@ public class Home extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String opcion = request.getParameter("opcion");
+        if(opcion == null){
+            opcion = "default";
+        }
         RequestDispatcher dispatcher;
         Connection conexion = Queries.createConnection();
         switch (opcion) {
@@ -59,17 +62,24 @@ public class Home extends HttpServlet {
                     if(request.getParameter("nuevaCarrera") == null){
                         if(request.getParameter("carreraModificar") == null){
                             System.err.println("Error");
+                            dispatcher = request.getRequestDispatcher("index.jsp");
+                            dispatcher.forward(request, response);            
                         }
                     }
                 }else {
                     String rpt;
                     try {
                         Carrera carreraConsulta = Queries.getCarrera(conexion, Queries.clientTable, request.getParameter("consultaCarrera"));
-                        request.setAttribute("carrera", carreraConsulta);
+                        if(carreraConsulta.getNombre() == null){
+                            throw new Exception();
+                        }
+                        request.setAttribute("carrera", carreraConsulta.getNombre());
                     } catch (Exception e) {
                         rpt = "No se encuentra disponible " + carrera + " como carrera en nuestra universidad";
+                        System.out.println("Error Error");
+                        request.setAttribute("carrera", rpt);
                     } finally {
-                        dispatcher = request.getRequestDispatcher("crear.jsp");
+                        dispatcher = request.getRequestDispatcher("carrera.jsp");
                         dispatcher.forward(request, response);        
                     }
                 }
