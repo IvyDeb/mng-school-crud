@@ -22,7 +22,7 @@ public final class Queries {
     final public static String db = "universidadtpfs";
     final public static String clientTable = "carreras";
     final static String user = "root";
-    final static String password = "root202518";
+    final static String password = "202518";
 
     public Queries(){
         // Properties properties = new Properties();
