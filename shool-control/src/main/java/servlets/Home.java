@@ -60,6 +60,7 @@ public class Home extends HttpServlet {
                 String consultaCarrera = request.getParameter("consultaCarrera");
                 String crearCarrera = request.getParameter("nuevaCarrera");
                 String modificarCarrera = request.getParameter("modificarCarrera");
+                String nuevaCarreraModificada = request.getParameter("carrera");
                 String rpt;
                 if((consultaCarrera) == null){
                     if(crearCarrera == null){
@@ -67,6 +68,24 @@ public class Home extends HttpServlet {
                             System.err.println("Error");
                             dispatcher = request.getRequestDispatcher("index.jsp");
                             dispatcher.forward(request, response);            
+                        } else {
+                            try {
+                                if(modificarCarrera == "" || nuevaCarreraModificada == ""){
+                                    throw new Exception();
+                                }
+                                String id = String.valueOf(Queries.getCarrera(conexion, Queries.clientTable, modificarCarrera).getId());
+                                Queries.updateData(conexion, Queries.clientTable, id, nuevaCarreraModificada);
+                                rpt = "Carrera creada correctamente";
+                                request.setAttribute("carrera", rpt);
+    
+                            } catch (Exception e) {
+                                rpt = "Error, ingrese un valor valido";
+                                request.setAttribute("carrera", rpt);
+                                System.out.println("Error, ingrese un valor valido");
+                            } finally {
+                                dispatcher = request.getRequestDispatcher("crear.jsp");
+                                dispatcher.forward(request, response);            
+                            }
                         }
                     } else {
                         try {
