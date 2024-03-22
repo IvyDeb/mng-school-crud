@@ -27,10 +27,10 @@ public class Home extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String rpt = request.getParameter("opcion");
+        String opcion = request.getParameter("opcion");
         RequestDispatcher dispatcher;
         Connection conexion = Queries.createConnection();
-        switch (rpt) {
+        switch (opcion) {
             case "Carrera":
                 dispatcher = request.getRequestDispatcher("carrera.jsp");
                 dispatcher.forward(request, response);
@@ -51,16 +51,27 @@ public class Home extends HttpServlet {
                 dispatcher = request.getRequestDispatcher("modificar.jsp");
                 dispatcher.forward(request, response);
                 break;
+
             default:
                 //Se fija uno a uno el que llega a tener un valor para hacer la consulta determiknada
-                if(request.getParameter("consultaCarrera") == null){
+                String carrera = request.getParameter("consultaCarrera");
+                if((carrera) == null){
                     if(request.getParameter("nuevaCarrera") == null){
                         if(request.getParameter("carreraModificar") == null){
                             System.err.println("Error");
                         }
                     }
                 }else {
-                    
+                    String rpt;
+                    try {
+                        Carrera carreraConsulta = Queries.getCarrera(conexion, Queries.clientTable, request.getParameter("consultaCarrera"));
+                        request.setAttribute("carrera", carreraConsulta);
+                    } catch (Exception e) {
+                        rpt = "No se encuentra disponible " + carrera + " como carrera en nuestra universidad";
+                    } finally {
+                        dispatcher = request.getRequestDispatcher("crear.jsp");
+                        dispatcher.forward(request, response);        
+                    }
                 }
                 break;
         }
