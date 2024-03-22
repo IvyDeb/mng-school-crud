@@ -10,7 +10,12 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <title>Document</title>
   </head>
   <body>
-    <h1>Web App Institucional</h1>
+    <h1>Crear carrera</h1>
     <jsp:include page="navbar.jsp" flush="true"></jsp:include>
+    <form method="post">
+      <label for="nuevaCarrera">Ingrese nueva carrera</label>
+      <input type="text" name="nuevaCarrera" />
+      <input type="submit" value="Crear" />
+    </form>
   </body>
 </html>

@@ -10,7 +10,14 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <title>Document</title>
   </head>
   <body>
-    <h1>Web App Institucional</h1>
+    <h1>Lista de carreras</h1>
     <jsp:include page="navbar.jsp" flush="true"></jsp:include>
+    <ul>
+      <c:forEach var="carrera" items="${requestScope.misCarreras}">
+        <li>
+          ${carrera.getNombre()} <span><a href="">Borrar</a></span>
+        </li>
+      </c:forEach>
+    </ul>
   </body>
 </html>
