@@ -14,7 +14,7 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <jsp:include page="navbar.jsp" flush="true"></jsp:include>
     <c:choose>
       <c:when test="${empty carrera}">
-        <form method="post">
+        <form action="crear" method="post">
           <label for="nuevaCarrera">Ingrese nueva carrera</label>
           <input type="text" name="nuevaCarrera" />
           <input type="submit" value="Crear" />
