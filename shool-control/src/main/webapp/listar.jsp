@@ -12,12 +12,36 @@ uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
   <body>
     <h1>Lista de carreras</h1>
     <jsp:include page="navbar.jsp" flush="true"></jsp:include>
-    <ul>
-      <c:forEach var="carrera" items="${requestScope.misCarreras}">
-        <li>
-          ${carrera.getNombre()} <span><a href="">Borrar</a></span>
-        </li>
-      </c:forEach>
-    </ul>
+    <c:choose>
+      <c:when test="${empty carreraEliminada}">
+        <ul>
+          <c:forEach var="carrera" items="${requestScope.misCarreras}">
+            <li>
+              ${carrera.getNombre()}
+              <span
+                ><a href="listar?carreraEliminada=${carrera.nombre}"
+                  >Borrar</a
+                ></span
+              >
+            </li>
+          </c:forEach>
+        </ul>
+      </c:when>
+      <c:otherwise>
+        <ul>
+          <c:forEach var="carrera" items="${requestScope.misCarreras}">
+            <li>
+              ${carrera.getNombre()}
+              <span
+                ><a href="listar?carreraEliminada=${carrera.nombre}"
+                  >Borrar</a
+                ></span
+              >
+            </li>
+          </c:forEach>
+        </ul>
+        <p>${carreraEliminada}</p>
+      </c:otherwise>
+    </c:choose>
   </body>
 </html>

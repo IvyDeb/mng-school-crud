@@ -30,7 +30,7 @@ public class Modificar extends HttpServlet {
             }
             String id = String.valueOf(Queries.getCarrera(conexion, Queries.clientTable, modificarCarrera).getId());
             Queries.updateData(conexion, Queries.clientTable, id, nuevaCarreraModificada);
-            rpt = "Carrera creada correctamente";
+            rpt = "Carrera actualizada correctamente";
             request.setAttribute("carrera", rpt);
 
         } catch (Exception e) {
@@ -38,7 +38,7 @@ public class Modificar extends HttpServlet {
             request.setAttribute("carrera", rpt);
             System.out.println("Error, ingrese un valor valido");
         } finally {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("crear.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("modificar.jsp");
             dispatcher.forward(request, response);            
         }
 
