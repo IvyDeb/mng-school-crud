@@ -1,4 +1,4 @@
-package servlets;
+package controller.servlets;
 
 import java.io.IOException;
 import jakarta.servlet.RequestDispatcher;
@@ -6,11 +6,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+// import model.dao.Queries;
+// import model.javabeans.Carrera;
 import jakarta.servlet.annotation.WebServlet;
-import dao.Queries;
-import javabeans.Carrera;
-import java.sql.Connection;
-import java.util.ArrayList;
+
+// import java.sql.Connection;
+// import java.util.ArrayList;
 
 
 @WebServlet(urlPatterns = {"/home"})
@@ -21,7 +22,7 @@ public class Home extends HttpServlet {
         // Connection conexion = Queries.createConnection();
         // ArrayList<Carrera> misCarreras = Queries.getCarreras(conexion, Queries.clientTable);
         // request.setAttribute("misCarreras", misCarreras);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("./view/home.jsp");
         dispatcher.forward(request, response);
         // Queries.closeConnection(conexion);
     }

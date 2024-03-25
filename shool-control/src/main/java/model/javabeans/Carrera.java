@@ -1,4 +1,4 @@
-package javabeans;
+package model.javabeans;
 
 public class Carrera {
     private int id;

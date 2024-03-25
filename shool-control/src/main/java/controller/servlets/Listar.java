@@ -1,4 +1,4 @@
-package servlets;
+package controller.servlets;
 
 import java.io.IOException;
 import jakarta.servlet.RequestDispatcher;
@@ -6,13 +6,14 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import javabeans.Carrera;
+import model.dao.Queries;
+import model.javabeans.Carrera;
 import jakarta.servlet.annotation.WebServlet;
-import dao.Queries;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import com.mysql.cj.QueryInfo;
+// import com.mysql.cj.QueryInfo;
 
 
 @WebServlet(urlPatterns = {"/listar"})
@@ -26,11 +27,11 @@ public class Listar extends HttpServlet {
         if(carreraEliminada != null){
             this.procesarSolicitud(request, response, misCarreras, carreraEliminada);
             request.setAttribute("misCarreras", misCarreras);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("listar.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("./view/listar.jsp");
             dispatcher.forward(request, response);
         } else {
         request.setAttribute("misCarreras", misCarreras);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("listar.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("./view/listar.jsp");
         dispatcher.forward(request, response);
         Queries.closeConnection(conexion);
         }

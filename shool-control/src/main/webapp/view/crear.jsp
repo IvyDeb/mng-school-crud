@@ -1,5 +1,5 @@
-<%@ page import="java.util.ArrayList" %> <%@ page import="javabeans.Carrera" %>
-<%@ page isELIgnored="false" %> <%@ taglib
+<%@ page import="java.util.ArrayList" %> <%@ page
+import="model.javabeans.Carrera" %> <%@ page isELIgnored="false" %> <%@ taglib
 uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>

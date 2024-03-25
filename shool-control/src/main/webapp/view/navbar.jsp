@@ -5,7 +5,7 @@
   <input type="submit" name="opcion" value="Modificar" />
 </form> -->
 
-<ul>
+<ul style="list-style-type: none">
   <li><a href="consulta">Carrera</a></li>
   <li><a href="crear">Crear</a></li>
   <li><a href="listar">Listar</a></li>

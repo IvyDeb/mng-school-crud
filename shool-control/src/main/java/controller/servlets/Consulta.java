@@ -1,4 +1,4 @@
-package servlets;
+package controller.servlets;
 
 import java.io.IOException;
 import jakarta.servlet.RequestDispatcher;
@@ -6,16 +6,17 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import javabeans.Carrera;
+import model.dao.Queries;
+import model.javabeans.Carrera;
 import jakarta.servlet.annotation.WebServlet;
-import dao.Queries;
+
 import java.sql.Connection;
 
 
 @WebServlet(urlPatterns = {"/consulta"})
 public class Consulta extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("carrera.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("./view/carrera.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -35,7 +36,7 @@ public class Consulta extends HttpServlet {
                 System.out.println("Error Error");
                 request.setAttribute("carrera", rpt);
         } finally {
-                RequestDispatcher dispatcher = request.getRequestDispatcher("carrera.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("./view/carrera.jsp");
                 dispatcher.forward(request, response);        
         }
         Queries.closeConnection(conexion);

@@ -1,17 +1,18 @@
-package dao;
+package model.dao;
 
 import java.sql.Statement;
-import java.io.FileInputStream;
-import java.io.IOException;
+// import java.io.FileInputStream;
+// import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.Properties;
+
+import model.javabeans.Carrera;
+
+// import java.util.Properties;
 import java.util.ArrayList;
-import javabeans.Carrera;
-// import javax.swing.JOptionPane;
 
 public final class Queries {  
 
